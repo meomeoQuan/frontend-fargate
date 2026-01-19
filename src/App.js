@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 const API_BASE = process.env.API_BASE || 'http://localhost:8080';
 
+const API_REC = `${API_BASE}/api/products`;
+
 function App() {
   const [products, setProducts] = useState([]);
   const [form, setForm] = useState({
@@ -16,13 +18,13 @@ function App() {
   }, []);
 
   const loadProducts = async () => {
-    const res = await fetch(`${API_BASE}/api/products`);
+    const res = await fetch(`${API_REC}`);
     setProducts(await res.json());
   };
 
   const submit = async () => {
     const method = editingId ? "PUT" : "POST";
-    const url = editingId ? `${API_BASE}/${editingId}` : API_BASE;
+    const url = editingId ? `${API_REC}/${editingId}` : API_REC;
 
     await fetch(url, {
       method,
@@ -48,7 +50,7 @@ function App() {
   };
 
   const remove = async (id) => {
-    await fetch(`${API_BASE}/${id}`, { method: "DELETE" });
+    await fetch(`${API_REC}/${id}`, { method: "DELETE" });
     loadProducts();
   };
 
