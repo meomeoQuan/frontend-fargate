@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
 
+const API_REC = "http://localhost:3000/api/products";
 
-const BACKEND_URL = process.env.BACKEND_URL || "http://backend.discovery.local:8080";
-const API_REC = `${BACKEND_URL}/api/products`;
 function App() {
   const [products, setProducts] = useState([]);
-  const [form, setForm] = useState({
-    name: "",
-    price: "",
-    stock: ""
-  });
+  const [form, setForm] = useState({ name: "", price: "", stock: "" });
   const [editingId, setEditingId] = useState(null);
 
   useEffect(() => {
@@ -41,11 +36,7 @@ function App() {
 
   const edit = (p) => {
     setEditingId(p.id);
-    setForm({
-      name: p.name,
-      price: p.price,
-      stock: p.stock
-    });
+    setForm({ name: p.name, price: p.price, stock: p.stock });
   };
 
   const remove = async (id) => {
