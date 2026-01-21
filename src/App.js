@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
-const API_REC = "/api/products";
 
+const BACKEND_URL = process.env.BACKEND_URL || "http://backend.discovery.local:8080";
+const API_REC = `${BACKEND_URL}/api/products`;
 function App() {
   const [products, setProducts] = useState([]);
   const [form, setForm] = useState({
