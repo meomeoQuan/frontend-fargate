@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
-const API_BASE = process.env.API_BASE || 'http://localhost:8080';
-
-const API_REC = `${API_BASE}/api/products`;
+const API_REC = "/api/products";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -18,7 +16,7 @@ function App() {
   }, []);
 
   const loadProducts = async () => {
-    const res = await fetch(`${API_REC}`);
+    const res = await fetch(API_REC);
     setProducts(await res.json());
   };
 
